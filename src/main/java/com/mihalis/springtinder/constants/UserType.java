@@ -1,5 +1,5 @@
 package com.mihalis.springtinder.constants;
 
-public enum UserTypes {
+public enum UserType {
     Mentor, Scientist, Student, Postgraduate
 }

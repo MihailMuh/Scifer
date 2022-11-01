@@ -1,10 +1,11 @@
 package com.mihalis.springtinder.models;
 
-import com.mihalis.springtinder.constants.UserTypes;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -12,11 +13,10 @@ import javax.persistence.Table;
 @Table(name = "students")
 @Getter
 @Setter
+@NoArgsConstructor
 @ToString(callSuper = true)
 public class Student extends User {
-    private String interests;
 
-    public Student() {
-        setType(UserTypes.Student.ordinal());
-    }
+    @Column(nullable = false)
+    private String interests;
 }

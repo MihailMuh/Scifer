@@ -1,5 +1,6 @@
 package com.mihalis.springtinder.models;
 
+import com.mihalis.springtinder.constants.UserType;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,11 +12,7 @@ import org.hibernate.annotations.TypeDef;
 import javax.persistence.*;
 import java.util.ArrayList;
 
-@TypeDef(
-        name = "list-array",
-        typeClass = ListArrayType.class
-)
-
+@TypeDef(name = "list-array", typeClass = ListArrayType.class)
 @MappedSuperclass
 @NoArgsConstructor
 @Getter
@@ -23,18 +20,43 @@ import java.util.ArrayList;
 @ToString
 public abstract class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name, surname, patronymic;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String surname;
+
+    @Column(nullable = false)
+    private String patronymic;
+
+
+    @Column(nullable = false)
+    private String photo;
+
+    @Column(nullable = false, name = "photo_rec")
+    private String photoRec;
+
+
+    @Column(nullable = false)
+    private String hash;
+
+    @Column(nullable = false, name = "access_token")
+    private String accessToken;
+
+
+    @Column(nullable = false)
     private String specialization;
 
+
     @Type(type = "list-array")
-    @Column(
-            name = "refs_to_articles",
-            columnDefinition = "text[]"
-    )
+    @Column(nullable = false, name = "refs_to_articles", columnDefinition = "text[]")
     private ArrayList<String> refsToArticles;
 
-    private int type;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserType type;
 }
