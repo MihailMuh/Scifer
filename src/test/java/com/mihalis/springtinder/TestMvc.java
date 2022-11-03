@@ -3,8 +3,8 @@ package com.mihalis.springtinder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mihalis.springtinder.models.Staffer;
 import com.mihalis.springtinder.models.Student;
-import com.mihalis.springtinder.services.StafferService;
-import com.mihalis.springtinder.services.StudentService;
+import com.mihalis.springtinder.services.models.StafferService;
+import com.mihalis.springtinder.services.models.StudentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -56,6 +58,22 @@ public class TestMvc {
     }
 
     @Test
+    public void testAllStudent(@Autowired ArrayList<Student> students) throws Exception {
+        studentService.saveAndFlush(students);
+
+        MvcResult result = mockMvc.perform(get("/student"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        ArrayList<?> studentsFromDB = objectMapper.readValue(result.getResponse().getContentAsString(), ArrayList.class);
+
+        for (int i = 0; i < students.size(); i++) {
+            Student student = objectMapper.readValue(objectMapper.writeValueAsString(studentsFromDB.get(i)), Student.class);
+            assertEquals(students.get(i).toString(), student.toString());
+        }
+    }
+
+    @Test
     public void testSaveStuffer(@Autowired Staffer staffer) throws Exception {
         mockMvc.perform(post("/staffer")
                         .content(objectMapper.writeValueAsString(staffer))
@@ -73,5 +91,21 @@ public class TestMvc {
 
         Staffer stafferFromDB = objectMapper.readValue(result.getResponse().getContentAsString(), Staffer.class);
         assertEquals(staffer.toString(), stafferFromDB.toString());
+    }
+
+    @Test
+    public void testAllStaffer(@Autowired ArrayList<Staffer> staffers) throws Exception {
+        stafferService.saveAndFlush(staffers);
+
+        MvcResult result = mockMvc.perform(get("/staffer"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        ArrayList<?> staffersFromDB = objectMapper.readValue(result.getResponse().getContentAsString(), ArrayList.class);
+
+        for (int i = 0; i < staffers.size(); i++) {
+            Staffer staffer = objectMapper.readValue(objectMapper.writeValueAsString(staffersFromDB.get(i)), Staffer.class);
+            assertEquals(staffers.get(i).toString(), staffer.toString());
+        }
     }
 }

@@ -5,17 +5,19 @@ import com.mihalis.springtinder.models.Staffer;
 import com.mihalis.springtinder.models.Student;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-@Configuration(proxyBeanMethods = false)
+@Configuration
 class BeansForTests {
-    private long randLong() {
+    public static long randLong() {
         return Math.abs(new Random().nextLong()) / 2;
     }
 
     @Bean
+    @Scope(scopeName = "prototype")
     public Student getStudent() {
         Student student = new Student();
         student.setId(randLong());
@@ -35,6 +37,17 @@ class BeansForTests {
     }
 
     @Bean
+    @Scope(scopeName = "prototype")
+    public ArrayList<Student> getAllStudents() {
+        ArrayList<Student> students = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            students.add(getStudent());
+        }
+        return students;
+    }
+
+    @Bean
+    @Scope(scopeName = "prototype")
     public Staffer getStaffer() {
         Staffer staffer = new Staffer();
         staffer.setId(randLong());
@@ -51,5 +64,15 @@ class BeansForTests {
         staffer.setAccessToken("533bacf01e11f55b536a565b57531ac114461ae8736d655i7etjyf");
 
         return staffer;
+    }
+
+    @Bean
+    @Scope(scopeName = "prototype")
+    public ArrayList<Staffer> getAllStaffers() {
+        ArrayList<Staffer> staffers = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            staffers.add(getStaffer());
+        }
+        return staffers;
     }
 }

@@ -1,9 +1,11 @@
 package com.mihalis.springtinder.controlers;
 
 import com.mihalis.springtinder.models.Staffer;
-import com.mihalis.springtinder.services.StafferService;
+import com.mihalis.springtinder.services.models.StafferService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -17,7 +19,12 @@ public class StafferController {
     }
 
     @GetMapping("/staffer/{id}")
-    private @ResponseBody Staffer get(@PathVariable long id) {
+    private Staffer get(@PathVariable long id) {
         return stafferService.select(id);
+    }
+
+    @GetMapping("/staffer")
+    private List<Staffer> getAll() {
+        return stafferService.getAll();
     }
 }

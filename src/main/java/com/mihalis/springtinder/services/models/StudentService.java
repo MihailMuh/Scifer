@@ -1,9 +1,11 @@
-package com.mihalis.springtinder.services;
+package com.mihalis.springtinder.services.models;
 
 import com.mihalis.springtinder.models.Student;
 import com.mihalis.springtinder.repositories.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @AllArgsConstructor
@@ -21,6 +23,11 @@ public class StudentService implements UserService<Student> {
     }
 
     @Override
+    public void saveAndFlush(List<Student> users) {
+        repository.saveAllAndFlush(users);
+    }
+
+    @Override
     public Student getReference(long id) {
         return repository.getReferenceById(id);
     }
@@ -30,5 +37,8 @@ public class StudentService implements UserService<Student> {
         return repository.findById(id).orElse(null);
     }
 
-
+    @Override
+    public List<Student> getAll() {
+        return repository.findAll();
+    }
 }
