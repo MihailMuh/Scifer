@@ -33,10 +33,9 @@ public abstract class User {
     private String patronymic;
 
 
-    @Column(nullable = false)
     private String photo;
 
-    @Column(nullable = false, name = "photo_rec")
+    @Column(name = "photo_rec")
     private String photoRec;
 
 

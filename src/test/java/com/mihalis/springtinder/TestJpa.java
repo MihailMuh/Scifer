@@ -30,21 +30,28 @@ class TestJpa {
 
         long id = student.getId();
 
-        testStudentOnCorrectString(student, id);
-        testStudentOnCorrectString(studentService.getReference(id), id);
+        testStudentOnCorrectString(student, id, student.getName());
+        testStudentOnCorrectString(studentService.getReference(id), id, student.getName());
+
+        student.setName("BLABLABLA");
+
+        studentService.saveAndFlush(student);
+        student = studentService.select(id);
+
+        testStudentOnCorrectString(student, id, "BLABLABLA");
     }
 
-    private void testStudentOnCorrectString(Student student, long id) {
+    private void testStudentOnCorrectString(Student student, long id, String name) {
         assertEquals(student.getId(), id);
-        assertEquals(student.getName(), "Roman");
+        assertEquals(student.getName(), name);
         assertEquals(student.getSurname(), "Parshincev");
         assertEquals(student.getPatronymic(), "Vitalievich");
         assertEquals(student.getRefsToArticles(), new ArrayList<>());
         assertEquals(student.getSpecialization(), "MATHMECH");
         assertEquals(student.getType(), UserType.Postgraduate);
         assertEquals(student.getInterests(), "StarCraft");
-        assertEquals(student.getPhoto(), "myPhoto");
-        assertEquals(student.getPhotoRec(), "myPhotoRec");
+        assertEquals(student.getPhoto(), "/uploads/" + id + "/my_photo.jpg");
+        assertEquals(student.getPhotoRec(), "/uploads/" + id + "/my_photo_small.jpg");
         assertEquals(student.getHash(), "7a6fa4dff77a228eeda56603b8f53806c");
         assertEquals(student.getAccessToken(), "533bacf01e11f55b536a565b57531ac114461ae8736d655i7etjyf");
     }
@@ -55,13 +62,20 @@ class TestJpa {
 
         long id = staffer.getId();
 
-        testMentorOnCorrectString(staffer, id);
-        testMentorOnCorrectString(stafferService.getReference(id), id);
+        testScientistOnCorrectString(staffer, id, staffer.getName());
+        testScientistOnCorrectString(stafferService.getReference(id), id, staffer.getName());
+
+        staffer.setName("BLABLABLA");
+
+        stafferService.saveAndFlush(staffer);
+        staffer = stafferService.select(id);
+
+        testScientistOnCorrectString(staffer, id, "BLABLABLA");
     }
 
-    private void testMentorOnCorrectString(Staffer staffer, long id) {
+    private void testScientistOnCorrectString(Staffer staffer, long id, String name) {
         assertEquals(staffer.getId(), id);
-        assertEquals(staffer.getName(), "Mikhail");
+        assertEquals(staffer.getName(), name);
         assertEquals(staffer.getSurname(), "Mukhortov");
         assertEquals(staffer.getPatronymic(), "Alekseevich");
         assertEquals(staffer.getRefsToArticles(), new ArrayList<>());
@@ -71,8 +85,8 @@ class TestJpa {
         assertNull(staffer.getAcademicDegree());
         assertNull(staffer.getAcademicTitle());
         assertNull(staffer.getRefsToQualifyingWorks());
-        assertEquals(staffer.getPhoto(), "myPhoto");
-        assertEquals(staffer.getPhotoRec(), "myPhotoRec");
+        assertEquals(staffer.getPhoto(), "/uploads/" + id + "/my_photo.jpg");
+        assertEquals(staffer.getPhotoRec(), "/uploads/" + id + "/my_photo_small.jpg");
         assertEquals(staffer.getHash(), "7a6fa4dff77a228eeda56603b8f53806c");
         assertEquals(staffer.getAccessToken(), "533bacf01e11f55b536a565b57531ac114461ae8736d655i7etjyf");
     }

@@ -1,4 +1,4 @@
-package com.mihalis.springtinder.controlers;
+package com.mihalis.springtinder.controllers;
 
 import com.mihalis.springtinder.models.Student;
 import com.mihalis.springtinder.services.models.StudentService;
@@ -7,24 +7,32 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @AllArgsConstructor
-@CrossOrigin
-public class StudentController {
+@RestController
+public class StudentController implements UserController<Student> {
     private final StudentService studentService;
 
+    @Override
     @PostMapping("/student")
-    private void save(@RequestBody Student student) {
+    public void save(@RequestBody Student student) {
         studentService.save(student);
     }
 
+    @Override
     @GetMapping("/student/{id}")
-    private Student get(@PathVariable long id) {
+    public Student get(@PathVariable long id) {
         return studentService.select(id);
     }
 
+    @Override
     @GetMapping("/student")
-    private List<Student> getAll() {
+    public List<Student> getAll() {
         return studentService.getAll();
+    }
+
+    @Override
+    @PutMapping("/student")
+    public void update(@RequestBody Student student) {
+        studentService.save(student);
     }
 }

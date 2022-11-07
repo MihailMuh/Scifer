@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>SpringTinder</name>
     <description>SpringTinder</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -55,6 +56,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${project.parent.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>spring-boot</classifier>
+                            <mainClass>com.mihalis.springtinder.SpringTinderApplication</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

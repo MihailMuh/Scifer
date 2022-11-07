@@ -19,8 +19,10 @@ class BeansForTests {
     @Bean
     @Scope(scopeName = "prototype")
     public Student getStudent() {
+        long id = randLong();
+
         Student student = new Student();
-        student.setId(randLong());
+        student.setId(id);
         student.setName("Roman");
         student.setSurname("Parshincev");
         student.setPatronymic("Vitalievich");
@@ -28,8 +30,8 @@ class BeansForTests {
         student.setSpecialization("MATHMECH");
         student.setInterests("StarCraft");
         student.setType(UserType.Postgraduate);
-        student.setPhoto("myPhoto");
-        student.setPhotoRec("myPhotoRec");
+        student.setPhoto("/uploads/" + id + "/my_photo.jpg");
+        student.setPhotoRec("/uploads/" + id + "/my_photo_small.jpg");
         student.setHash("7a6fa4dff77a228eeda56603b8f53806c");
         student.setAccessToken("533bacf01e11f55b536a565b57531ac114461ae8736d655i7etjyf");
 
@@ -49,8 +51,10 @@ class BeansForTests {
     @Bean
     @Scope(scopeName = "prototype")
     public Staffer getStaffer() {
+        long id = randLong();
+
         Staffer staffer = new Staffer();
-        staffer.setId(randLong());
+        staffer.setId(id);
         staffer.setName("Mikhail");
         staffer.setSurname("Mukhortov");
         staffer.setPatronymic("Alekseevich");
@@ -58,8 +62,8 @@ class BeansForTests {
         staffer.setSpecialization("MATHMECH");
         staffer.setType(UserType.Mentor);
         staffer.setPosition("Mentor");
-        staffer.setPhoto("myPhoto");
-        staffer.setPhotoRec("myPhotoRec");
+        staffer.setPhoto("/uploads/" + id + "/my_photo.jpg");
+        staffer.setPhotoRec("/uploads/" + id + "/my_photo_small.jpg");
         staffer.setHash("7a6fa4dff77a228eeda56603b8f53806c");
         staffer.setAccessToken("533bacf01e11f55b536a565b57531ac114461ae8736d655i7etjyf");
 
