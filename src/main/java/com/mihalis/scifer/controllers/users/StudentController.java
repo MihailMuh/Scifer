@@ -1,7 +1,7 @@
-package com.mihalis.springtinder.controllers;
+package com.mihalis.scifer.controllers.users;
 
-import com.mihalis.springtinder.models.Student;
-import com.mihalis.springtinder.services.models.StudentService;
+import com.mihalis.scifer.models.Student;
+import com.mihalis.scifer.services.models.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +28,5 @@ public class StudentController implements UserController<Student> {
     @GetMapping("/student")
     public List<Student> getAll() {
         return studentService.getAll();
-    }
-
-    @Override
-    @PutMapping("/student")
-    public void update(@RequestBody Student student) {
-        studentService.save(student);
     }
 }

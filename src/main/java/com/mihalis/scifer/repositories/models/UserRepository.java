@@ -1,4 +1,4 @@
-package com.mihalis.springtinder.repositories;
+package com.mihalis.scifer.repositories.models;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;

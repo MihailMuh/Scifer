@@ -1,13 +1,13 @@
-package com.mihalis.springtinder.services.models;
+package com.mihalis.scifer.services.models;
 
-import com.mihalis.springtinder.models.Staffer;
-import com.mihalis.springtinder.repositories.StafferRepository;
+import com.mihalis.scifer.models.Staffer;
+import com.mihalis.scifer.repositories.models.StafferRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 @AllArgsConstructor
 public class StafferService implements UserService<Staffer> {
     private final StafferRepository repository;

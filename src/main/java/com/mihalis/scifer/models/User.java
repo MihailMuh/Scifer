@@ -1,6 +1,6 @@
-package com.mihalis.springtinder.models;
+package com.mihalis.scifer.models;
 
-import com.mihalis.springtinder.constants.UserType;
+import com.mihalis.scifer.constants.UserType;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,9 +33,10 @@ public abstract class User {
     private String patronymic;
 
 
+    @Column(nullable = false)
     private String photo;
 
-    @Column(name = "photo_rec")
+    @Column(nullable = false, name = "photo_rec")
     private String photoRec;
 
 

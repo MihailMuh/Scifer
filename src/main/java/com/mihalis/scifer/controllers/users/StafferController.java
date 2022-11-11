@@ -1,7 +1,7 @@
-package com.mihalis.springtinder.controllers;
+package com.mihalis.scifer.controllers.users;
 
-import com.mihalis.springtinder.models.Staffer;
-import com.mihalis.springtinder.services.models.StafferService;
+import com.mihalis.scifer.models.Staffer;
+import com.mihalis.scifer.services.models.StafferService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +28,5 @@ public class StafferController implements UserController<Staffer> {
     @GetMapping("/staffer")
     public List<Staffer> getAll() {
         return stafferService.getAll();
-    }
-
-    @Override
-    @PutMapping("/staffer")
-    public void update(Staffer staffer) {
-        stafferService.save(staffer);
     }
 }

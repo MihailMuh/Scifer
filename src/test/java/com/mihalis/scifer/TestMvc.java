@@ -1,16 +1,15 @@
-package com.mihalis.springtinder;
+package com.mihalis.scifer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mihalis.springtinder.models.Staffer;
-import com.mihalis.springtinder.models.Student;
-import com.mihalis.springtinder.services.models.StafferService;
-import com.mihalis.springtinder.services.models.StudentService;
+import com.mihalis.scifer.models.Staffer;
+import com.mihalis.scifer.models.Student;
+import com.mihalis.scifer.services.models.StafferService;
+import com.mihalis.scifer.services.models.StudentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -37,14 +37,8 @@ public class TestMvc {
     @Autowired
     private StafferService stafferService;
 
-    @Autowired
-    private Student student;
-
-    @Autowired
-    private Staffer staffer;
-
     @Test
-    public void testSaveStudent() throws Exception {
+    public void testSaveStudent(@Autowired Student student) throws Exception {
         mockMvc.perform(post("/student")
                         .content(objectMapper.writeValueAsString(student))
                         .contentType(MediaType.APPLICATION_JSON))
@@ -64,18 +58,6 @@ public class TestMvc {
     }
 
     @Test
-    public void testUpdateStudent() throws Exception {
-        testSaveStudent();
-
-        student.setName("BLABLABLA");
-
-        mockMvc.perform(put("/student")
-                        .content(objectMapper.writeValueAsString(student))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     public void testAllStudents(@Autowired ArrayList<Student> students) throws Exception {
         studentService.saveAndFlush(students);
 
@@ -92,7 +74,7 @@ public class TestMvc {
     }
 
     @Test
-    public void testSaveStuffer() throws Exception {
+    public void testSaveStuffer(@Autowired Staffer staffer) throws Exception {
         mockMvc.perform(post("/staffer")
                         .content(objectMapper.writeValueAsString(staffer))
                         .contentType(MediaType.APPLICATION_JSON))
@@ -111,18 +93,6 @@ public class TestMvc {
 
         Staffer stafferFromDB = objectMapper.readValue(result.getResponse().getContentAsString(), Staffer.class);
         assertEquals(staffer.toString(), stafferFromDB.toString());
-    }
-
-    @Test
-    public void testUpdateStuffer() throws Exception {
-        testSaveStuffer();
-
-        staffer.setName("BLABLABLA");
-
-        mockMvc.perform(put("/staffer")
-                        .content(objectMapper.writeValueAsString(staffer))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
     }
 
     @Test

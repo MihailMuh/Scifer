@@ -1,4 +1,4 @@
-package com.mihalis.springtinder.controllers;
+package com.mihalis.scifer.controllers.users;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +13,4 @@ public interface UserController<T> {
     T get(@PathVariable long id);
 
     List<T> getAll();
-
-    void update(@RequestBody T user);
 }

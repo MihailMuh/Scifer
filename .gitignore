@@ -25,13 +25,13 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
+build/F
 !**/src/main/**/build/
 !**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
 
-DataServices/
+testServices/
 src/main/resources/application.properties
 uploads/

@@ -1,10 +1,10 @@
-package com.mihalis.springtinder;
+package com.mihalis.scifer;
 
-import com.mihalis.springtinder.constants.UserType;
-import com.mihalis.springtinder.models.Staffer;
-import com.mihalis.springtinder.models.Student;
-import com.mihalis.springtinder.services.models.StafferService;
-import com.mihalis.springtinder.services.models.StudentService;
+import com.mihalis.scifer.constants.UserType;
+import com.mihalis.scifer.models.Staffer;
+import com.mihalis.scifer.models.Student;
+import com.mihalis.scifer.services.models.StafferService;
+import com.mihalis.scifer.services.models.StudentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,10 +1,7 @@
-package com.mihalis.springtinder.services.models;
-
-import org.springframework.stereotype.Service;
+package com.mihalis.scifer.services.models;
 
 import java.util.List;
 
-@Service
 public interface UserService<T> {
 
     void save(T user);

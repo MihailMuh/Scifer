@@ -1,13 +1,13 @@
-package com.mihalis.springtinder.services.models;
+package com.mihalis.scifer.services.models;
 
-import com.mihalis.springtinder.models.Student;
-import com.mihalis.springtinder.repositories.StudentRepository;
+import com.mihalis.scifer.models.Student;
+import com.mihalis.scifer.repositories.models.StudentRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 @AllArgsConstructor
 public class StudentService implements UserService<Student> {
     private final StudentRepository repository;

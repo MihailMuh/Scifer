@@ -1,4 +1,4 @@
-package com.mihalis.springtinder.models;
+package com.mihalis.scifer.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
