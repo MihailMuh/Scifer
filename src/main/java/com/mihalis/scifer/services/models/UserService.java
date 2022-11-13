@@ -1,18 +1,19 @@
 package com.mihalis.scifer.services.models;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 import java.util.List;
 
 public interface UserService<T> {
 
-    void save(T user);
+    Mono<T> save(T user);
 
-    void saveAndFlush(T user);
+    Flux<T> save(List<T> users);
 
-    void saveAndFlush(List<T> users);
+    Mono<T> get(long id);
 
-    T getReference(long id);
+    Flux<T> getAll();
 
-    T select(long id);
-
-    List<T> getAll();
+    Mono<Void> deleteAll();
 }

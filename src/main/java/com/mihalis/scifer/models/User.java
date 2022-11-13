@@ -1,62 +1,57 @@
 package com.mihalis.scifer.models;
 
 import com.mihalis.scifer.constants.UserType;
-import com.vladmihalcea.hibernate.type.array.ListArrayType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
-@TypeDef(name = "list-array", typeClass = ListArrayType.class)
-@MappedSuperclass
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
-public abstract class User {
+@Data
+public abstract class User implements Persistable<Long> {
     @Id
-    private long id;
+    private Long id;
 
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private String surname;
-
-    @Column(nullable = false)
     private String patronymic;
 
-
-    @Column(nullable = false)
+    @Column("photo_rec")
+    private String photoRec;
     private String photo;
 
-    @Column(nullable = false, name = "photo_rec")
-    private String photoRec;
-
-
-    @Column(nullable = false)
+    @Column("access_token")
+    private String accessToken;
     private String hash;
 
-    @Column(nullable = false, name = "access_token")
-    private String accessToken;
-
-
-    @Column(nullable = false)
     private String specialization;
 
+    @Column("refs_to_articles")
+    private String[] refsToArticles;
 
-    @Type(type = "list-array")
-    @Column(nullable = false, name = "refs_to_articles", columnDefinition = "text[]")
-    private ArrayList<String> refsToArticles;
-
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private UserType type;
+
+    @Column("register_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime registerDate;
+
+    @Override
+    @NonNull
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    @Transient
+    public boolean isNew() {
+        if (registerDate == null) {
+            registerDate = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
+            return true;
+        }
+        return false;
+    }
 }

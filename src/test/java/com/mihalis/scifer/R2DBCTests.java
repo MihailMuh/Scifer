@@ -8,16 +8,13 @@ import com.mihalis.scifer.services.models.StudentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
-class TestJpa {
+@DirtiesContext
+class R2DBCTests {
     @Autowired
     private StudentService studentService;
 
@@ -25,20 +22,18 @@ class TestJpa {
     private StafferService stafferService;
 
     @Test
-    public void testStudent(@Autowired Student student) {
-        studentService.saveAndFlush(student);
-
+    public void testStudent(@Autowired final Student student) {
         long id = student.getId();
 
+        studentService.save(student).subscribe(savedStudent ->
+                testStudentOnCorrectString(savedStudent, id, student.getName()));
+
         testStudentOnCorrectString(student, id, student.getName());
-        testStudentOnCorrectString(studentService.getReference(id), id, student.getName());
 
         student.setName("BLABLABLA");
 
-        studentService.saveAndFlush(student);
-        student = studentService.select(id);
-
-        testStudentOnCorrectString(student, id, "BLABLABLA");
+        studentService.save(student).subscribe(savedStudent ->
+                testStudentOnCorrectString(savedStudent, id, "BLABLABLA"));
     }
 
     private void testStudentOnCorrectString(Student student, long id, String name) {
@@ -46,7 +41,7 @@ class TestJpa {
         assertEquals(student.getName(), name);
         assertEquals(student.getSurname(), "Parshincev");
         assertEquals(student.getPatronymic(), "Vitalievich");
-        assertEquals(student.getRefsToArticles(), new ArrayList<>());
+        assertArrayEquals(student.getRefsToArticles(), new String[]{"hello", "hi"});
         assertEquals(student.getSpecialization(), "MATHMECH");
         assertEquals(student.getType(), UserType.Postgraduate);
         assertEquals(student.getInterests(), "StarCraft");
@@ -57,28 +52,26 @@ class TestJpa {
     }
 
     @Test
-    public void testStaff(@Autowired Staffer staffer) {
-        stafferService.saveAndFlush(staffer);
-
+    public void testStaff(@Autowired final Staffer staffer) {
         long id = staffer.getId();
 
-        testScientistOnCorrectString(staffer, id, staffer.getName());
-        testScientistOnCorrectString(stafferService.getReference(id), id, staffer.getName());
+        stafferService.save(staffer).subscribe(savedStaffer ->
+                testStafferOnCorrectString(savedStaffer, id, staffer.getName()));
+
+        testStafferOnCorrectString(staffer, id, staffer.getName());
 
         staffer.setName("BLABLABLA");
 
-        stafferService.saveAndFlush(staffer);
-        staffer = stafferService.select(id);
-
-        testScientistOnCorrectString(staffer, id, "BLABLABLA");
+        stafferService.save(staffer).subscribe(savedStaffer ->
+                testStafferOnCorrectString(savedStaffer, id, "BLABLABLA"));
     }
 
-    private void testScientistOnCorrectString(Staffer staffer, long id, String name) {
+    private void testStafferOnCorrectString(Staffer staffer, long id, String name) {
         assertEquals(staffer.getId(), id);
         assertEquals(staffer.getName(), name);
         assertEquals(staffer.getSurname(), "Mukhortov");
         assertEquals(staffer.getPatronymic(), "Alekseevich");
-        assertEquals(staffer.getRefsToArticles(), new ArrayList<>());
+        assertArrayEquals(staffer.getRefsToArticles(), new String[]{"hello", "hi"});
         assertEquals(staffer.getSpecialization(), "MATHMECH");
         assertEquals(staffer.getType(), UserType.Mentor);
         assertEquals(staffer.getPosition(), "Mentor");

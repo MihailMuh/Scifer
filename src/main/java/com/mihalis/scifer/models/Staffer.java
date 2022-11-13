@@ -1,34 +1,22 @@
 package com.mihalis.scifer.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.Type;
+import lombok.*;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.ArrayList;
-
-@Entity
 @Table(name = "staffers")
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@NoArgsConstructor
 public class Staffer extends User {
-
-    @Column(nullable = false)
     private String position;
 
-    @Column(name = "academic_degree")
+    @Column("academic_degree")
     private String academicDegree;
 
-    @Column(name = "academic_title")
+    @Column("academic_title")
     private String academicTitle;
 
-    @Type(type = "list-array")
-    @Column(name = "refs_to_qualifying_works", columnDefinition = "text[]")
-    private ArrayList<String> refsToQualifyingWorks;
+    @Column("refs_to_qualifying_works")
+    private String[] refsToQualifyingWorks;
 }

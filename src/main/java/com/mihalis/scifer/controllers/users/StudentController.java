@@ -4,8 +4,8 @@ import com.mihalis.scifer.models.Student;
 import com.mihalis.scifer.services.models.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
 @RestController
@@ -20,13 +20,13 @@ public class StudentController implements UserController<Student> {
 
     @Override
     @GetMapping("/student/{id}")
-    public Student get(@PathVariable long id) {
-        return studentService.select(id);
+    public Mono<Student> get(@PathVariable long id) {
+        return studentService.get(id);
     }
 
     @Override
     @GetMapping("/student")
-    public List<Student> getAll() {
+    public Flux<Student> getAll() {
         return studentService.getAll();
     }
 }

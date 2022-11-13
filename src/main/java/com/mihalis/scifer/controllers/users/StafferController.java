@@ -4,8 +4,8 @@ import com.mihalis.scifer.models.Staffer;
 import com.mihalis.scifer.services.models.StafferService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
 @RestController
@@ -20,13 +20,13 @@ public class StafferController implements UserController<Staffer> {
 
     @Override
     @GetMapping("/staffer/{id}")
-    public Staffer get(@PathVariable long id) {
-        return stafferService.select(id);
+    public Mono<Staffer> get(@PathVariable long id) {
+        return stafferService.get(id);
     }
 
     @Override
     @GetMapping("/staffer")
-    public List<Staffer> getAll() {
+    public Flux<Staffer> getAll() {
         return stafferService.getAll();
     }
 }

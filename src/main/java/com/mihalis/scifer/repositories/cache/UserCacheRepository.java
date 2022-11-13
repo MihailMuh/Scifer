@@ -2,29 +2,31 @@ package com.mihalis.scifer.repositories.cache;
 
 import com.mihalis.scifer.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ReactiveRedisOperations;
+import org.springframework.data.redis.core.ReactiveValueOperations;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
+
+import java.time.Duration;
 
 @Component
 public class UserCacheRepository {
-    private static final String USER_HASH_MAP_KEY = "USERS";
-    private final HashOperations<String, Long, User> cache;
+    private final ReactiveValueOperations<Long, User> cache;
 
     @Autowired
-    public UserCacheRepository(RedisTemplate<String, User> cache) {
-        this.cache = cache.opsForHash();
+    public UserCacheRepository(ReactiveRedisOperations<Long, User> reactiveRedis) {
+        this.cache = reactiveRedis.opsForValue();
     }
 
     public void put(long id, User user) {
-        cache.put(USER_HASH_MAP_KEY, id, user);
+        cache.set(id, user, Duration.ofHours(12));
     }
 
-    public User get(long id) {
-        return cache.get(USER_HASH_MAP_KEY, id);
+    public Mono<User> get(long id) {
+        return cache.get(id);
     }
 
     public void delete(long id) {
-        cache.delete(USER_HASH_MAP_KEY, id);
+        cache.delete(id);
     }
 }

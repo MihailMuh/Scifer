@@ -26,7 +26,7 @@ class BeansForTests {
         student.setName("Roman");
         student.setSurname("Parshincev");
         student.setPatronymic("Vitalievich");
-        student.setRefsToArticles(new ArrayList<>());
+        student.setRefsToArticles(new String[]{"hello", "hi"});
         student.setSpecialization("MATHMECH");
         student.setInterests("StarCraft");
         student.setType(UserType.Postgraduate);
@@ -58,7 +58,7 @@ class BeansForTests {
         staffer.setName("Mikhail");
         staffer.setSurname("Mukhortov");
         staffer.setPatronymic("Alekseevich");
-        staffer.setRefsToArticles(new ArrayList<>());
+        staffer.setRefsToArticles(new String[]{"hello", "hi"});
         staffer.setSpecialization("MATHMECH");
         staffer.setType(UserType.Mentor);
         staffer.setPosition("Mentor");

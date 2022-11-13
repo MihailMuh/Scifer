@@ -4,6 +4,8 @@ import com.mihalis.scifer.models.Student;
 import com.mihalis.scifer.repositories.models.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -13,32 +15,27 @@ public class StudentService implements UserService<Student> {
     private final StudentRepository repository;
 
     @Override
-    public void save(Student student) {
-        repository.save(student);
+    public Mono<Student> save(Student student) {
+        return repository.save(student);
     }
 
     @Override
-    public void saveAndFlush(Student student) {
-        repository.saveAndFlush(student);
+    public Flux<Student> save(List<Student> users) {
+        return repository.saveAll(users);
     }
 
     @Override
-    public void saveAndFlush(List<Student> users) {
-        repository.saveAllAndFlush(users);
+    public Mono<Student> get(long id) {
+        return repository.findById(id);
     }
 
     @Override
-    public Student getReference(long id) {
-        return repository.getReferenceById(id);
-    }
-
-    @Override
-    public Student select(long id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<Student> getAll() {
+    public Flux<Student> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public Mono<Void> deleteAll() {
+        return repository.deleteAll();
     }
 }

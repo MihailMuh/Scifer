@@ -1,24 +1,28 @@
 package com.mihalis.scifer.configurations;
 
+import com.mihalis.scifer.models.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisSocketConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.core.ReactiveRedisOperations;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class CacheConfig {
-    @Lazy
     @Bean
-    public RedisTemplate<String, ?> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, ?> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        return template;
+    ReactiveRedisOperations<Long, User> redisOperations(ReactiveRedisConnectionFactory factory) {
+        Jackson2JsonRedisSerializer<User> serializer = new Jackson2JsonRedisSerializer<>(User.class);
+
+        RedisSerializationContext.RedisSerializationContextBuilder<Long, User> builder =
+                RedisSerializationContext.newSerializationContext(new StringRedisSerializer());
+
+        return new ReactiveRedisTemplate<>(factory, builder.value(serializer).build());
     }
 
     @Bean
