@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Data
-public abstract class User implements Persistable<Long> {
+public class User implements Persistable<Long> {
     @Id
     private Long id;
 

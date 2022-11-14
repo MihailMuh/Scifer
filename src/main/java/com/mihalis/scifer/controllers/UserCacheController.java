@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserCacheController {
     private final UserCacheRepository cacheRepository;
 
-    @PostMapping("/user")
+    @PostMapping("/cache/user")
     private void saveUserToCache(@RequestBody User user) {
         cacheRepository.put(user.getId(), user);
     }
 }
+
