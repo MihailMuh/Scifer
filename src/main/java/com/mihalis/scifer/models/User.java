@@ -1,20 +1,19 @@
 package com.mihalis.scifer.models;
 
 import com.mihalis.scifer.constants.UserType;
-import lombok.*;
+import lombok.Data;
+import lombok.NonNull;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 @Data
 public class User implements Persistable<Long> {
     @Id
-    private Long id;
+    private long id;
 
     private String name;
     private String surname;
@@ -36,8 +35,7 @@ public class User implements Persistable<Long> {
     private UserType type;
 
     @Column("register_date")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime registerDate;
+    private LocalDate registerDate;
 
     @Override
     @NonNull
@@ -46,10 +44,9 @@ public class User implements Persistable<Long> {
     }
 
     @Override
-    @Transient
     public boolean isNew() {
         if (registerDate == null) {
-            registerDate = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
+            registerDate = LocalDateTime.now().toLocalDate();
             return true;
         }
         return false;

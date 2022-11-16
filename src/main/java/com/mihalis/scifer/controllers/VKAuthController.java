@@ -19,21 +19,24 @@ public class VKAuthController {
     private final UserCacheRepository cacheRepository;
 
     @GetMapping("/get-access")
-    private Mono<Mono<User>> getAccessToken(@RequestParam String code, @Value("${app.secret-key}") String secretKey, @Value("${app.id}") long appId) {
-        Mono<VKResponse> response = webClient.get()
+    private Mono<User> getAccessToken(@RequestParam String code, @Value("${app.secret-key}") String secretKey, @Value("${app.id}") long appId) {
+        return webClient.get()
                 .uri("https://oauth.vk.com/access_token?client_id=" + appId + "&client_secret=" + secretKey +
                         "&redirect_uri=https://scifer.space/get-access&code=" + code)
                 .retrieve()
-                .bodyToMono(VKResponse.class);
-
-        return response.map(this::handleJsonWithAccessToken);
+                .bodyToMono(VKResponse.class)
+                .map(this::checkOnErrorResponse)
+                .flatMap(this::getUserFromCache);
     }
 
-    private Mono<User> handleJsonWithAccessToken(VKResponse vkResponse) {
+    private VKResponse checkOnErrorResponse(VKResponse vkResponse) {
         if (vkResponse.error != null) {
             throw new RuntimeException(vkResponse.error_description);
         }
+        return vkResponse;
+    }
 
+    private Mono<User> getUserFromCache(VKResponse vkResponse) {
         return cacheRepository.get(vkResponse.user_id).map(user -> {
             user.setAccessToken(vkResponse.access_token);
 

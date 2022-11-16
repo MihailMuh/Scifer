@@ -19,4 +19,3 @@ public class UserCacheController {
         cacheRepository.put(user.getId(), user);
     }
 }
-
