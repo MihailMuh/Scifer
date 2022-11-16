@@ -30,7 +30,7 @@ public class WebTestsForStudents {
     private ObjectMapper objectMapper;
 
     @Test
-    public void testSaveStudent(@Autowired Student student) {
+    public void shouldSaveStudent_byWebClient(@Autowired Student student) {
         studentService.save(student).block();
 
         webClient.post()
@@ -38,22 +38,24 @@ public class WebTestsForStudents {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(student))
                 .exchange()
-                .expectStatus().isOk();
+                .expectStatus()
+                .isOk();
     }
 
     @Test
-    public void testGetStudent(@Autowired Student student) {
+    public void shouldGetStudent_fromWebClient(@Autowired Student student) {
         studentService.save(student).block();
 
         webClient.get()
                 .uri("/student/{id}", student.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Student.class).isEqualTo(student);
+                .expectBody(Student.class)
+                .isEqualTo(student);
     }
 
     @Test
-    public void testAllStudents(@Autowired ArrayList<Student> students) {
+    public void shouldGetAllListOfStaffer_fromWebClient(@Autowired ArrayList<Student> students) {
         studentService.deleteAll().block();
         studentService.save(students).blockLast();
 
@@ -61,7 +63,8 @@ public class WebTestsForStudents {
                 .uri("/student")
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(String.class).value(new Consumer<>() {
+                .expectBody(String.class)
+                .value(new Consumer<>() {
                     @Override
                     @SneakyThrows
                     public void accept(String resultString) {

@@ -3,6 +3,7 @@ package com.mihalis.scifer;
 import com.mihalis.scifer.constants.UserType;
 import com.mihalis.scifer.models.Staffer;
 import com.mihalis.scifer.models.Student;
+import com.mihalis.scifer.models.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -78,5 +79,26 @@ class BeansForTests {
             staffers.add(getStaffer());
         }
         return staffers;
+    }
+
+    @Bean(name = "user")
+    @Scope(scopeName = "prototype")
+    public User getUser() {
+        long id = randLong();
+
+        User user = new User();
+        user.setId(id);
+        user.setName("Roman");
+        user.setSurname("Parshincev");
+        user.setPatronymic("Vitalievich");
+        user.setRefsToArticles(new String[]{"hello", "hi"});
+        user.setSpecialization("MATHMECH");
+        user.setType(UserType.Postgraduate);
+        user.setPhoto("/uploads/" + id + "/my_photo.jpg");
+        user.setPhotoRec("/uploads/" + id + "/my_photo_small.jpg");
+        user.setHash("7a6fa4dff77a228eeda56603b8f53806c");
+        user.setAccessToken("533bacf01e11f55b536a565b57531ac114461ae8736d655i7etjyf");
+
+        return user;
     }
 }

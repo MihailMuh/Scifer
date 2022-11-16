@@ -46,6 +46,6 @@ public class VKAuthController {
         });
     }
 
-    public record VKResponse(String access_token, int expires_in, int user_id, String error, String error_description) {
+    private record VKResponse(String access_token, int expires_in, int user_id, String error, String error_description) {
     }
 }

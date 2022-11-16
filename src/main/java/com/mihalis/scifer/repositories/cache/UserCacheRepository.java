@@ -18,8 +18,8 @@ public class UserCacheRepository {
         this.cache = reactiveRedis.opsForValue();
     }
 
-    public void put(long id, User user) {
-        cache.set(id, user, Duration.ofHours(12));
+    public Mono<Boolean> put(long id, User user) {
+        return cache.set(id, user, Duration.ofHours(12));
     }
 
     public Mono<User> get(long id) {

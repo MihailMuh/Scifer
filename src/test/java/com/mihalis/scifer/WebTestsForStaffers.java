@@ -30,7 +30,7 @@ public class WebTestsForStaffers {
     private ObjectMapper objectMapper;
 
     @Test
-    public void testSaveStuffer(@Autowired Staffer staffer) {
+    public void shouldSaveStaffer_byWebClient(@Autowired Staffer staffer) {
         stafferService.save(staffer).block();
 
         webClient.post()
@@ -38,22 +38,24 @@ public class WebTestsForStaffers {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(staffer))
                 .exchange()
-                .expectStatus().isOk();
+                .expectStatus()
+                .isOk();
     }
 
     @Test
-    public void testGetStaffer(@Autowired Staffer staffer) {
+    public void shouldGetStaffer_fromWebClient(@Autowired Staffer staffer) {
         stafferService.save(staffer).block();
 
         webClient.get()
                 .uri("/staffer/{id}", staffer.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Staffer.class).isEqualTo(staffer);
+                .expectBody(Staffer.class)
+                .isEqualTo(staffer);
     }
 
     @Test
-    public void testAllStaffers(@Autowired ArrayList<Staffer> staffers) {
+    public void shouldGetAllListOfStaffer_fromWebClient(@Autowired ArrayList<Staffer> staffers) {
         stafferService.deleteAll().block();
         stafferService.save(staffers).blockLast();
 
@@ -61,7 +63,8 @@ public class WebTestsForStaffers {
                 .uri("/staffer")
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(String.class).value(new Consumer<>() {
+                .expectBody(String.class)
+                .value(new Consumer<>() {
                     @Override
                     @SneakyThrows
                     public void accept(String resultString) {
