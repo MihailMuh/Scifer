@@ -1,6 +1,6 @@
 package com.scifer.mihalis.controllers.users;
 
-import com.scifer.mihalis.hints.SciferHints;
+import com.scifer.mihalis.hints.ReflectionHints;
 import com.scifer.mihalis.models.Student;
 import com.scifer.mihalis.services.models.StudentService;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
 @RestController
-@ImportRuntimeHints(SciferHints.class)
+@ImportRuntimeHints(ReflectionHints.class)
 public class StudentController implements UserController<Student> {
     private final StudentService studentService;
 

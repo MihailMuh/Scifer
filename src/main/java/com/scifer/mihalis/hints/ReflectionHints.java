@@ -4,11 +4,13 @@ import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 
-public class SciferHints implements RuntimeHintsRegistrar {
+public class ReflectionHints implements RuntimeHintsRegistrar {
     @Override
     public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
         hints.reflection()
-                .registerType(Instant[].class);
+                .registerType(Instant[].class)
+                .registerType(ZonedDateTime[].class);
     }
 }

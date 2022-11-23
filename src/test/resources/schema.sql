@@ -4,50 +4,50 @@ CREATE TABLE students
 (
     id               bigint PRIMARY KEY,
 
-    name             text                        NOT NULL,
-    surname          text                        NOT NULL,
-    patronymic       text                        NOT NULL,
+    name             text   NOT NULL,
+    surname          text   NOT NULL,
+    patronymic       text   NOT NULL,
 
-    photo            text                        NOT NULL,
-    photo_rec        text                        NOT NULL,
+    photo            text   NOT NULL,
+    photo_rec        text   NOT NULL,
 
-    hash             text                        NOT NULL,
-    access_token     text                        NOT NULL,
+    hash             text   NOT NULL,
+    access_token     text   NOT NULL,
 
-    specialization   text                        NOT NULL,
+    specialization   text   NOT NULL,
 
-    refs_to_articles text[]                      NOT NULL,
+    refs_to_articles text[] NOT NULL,
 
-    type             text                        NOT NULL,
+    type             text   NOT NULL,
 
-    register_date    timestamp without time zone NOT NULL,
+    register_date    date   NOT NULL,
 
-    interests        text                        NOT NULL
+    interests        text   NOT NULL
 );
 
 CREATE TABLE staffers
 (
     id                       bigint PRIMARY KEY,
 
-    name                     text                        NOT NULL,
-    surname                  text                        NOT NULL,
-    patronymic               text                        NOT NULL,
+    name                     text   NOT NULL,
+    surname                  text   NOT NULL,
+    patronymic               text   NOT NULL,
 
-    photo                    text                        NOT NULL,
-    photo_rec                text                        NOT NULL,
+    photo                    text   NOT NULL,
+    photo_rec                text   NOT NULL,
 
-    hash                     text                        NOT NULL,
-    access_token             text                        NOT NULL,
+    hash                     text   NOT NULL,
+    access_token             text   NOT NULL,
 
-    specialization           text                        NOT NULL,
+    specialization           text   NOT NULL,
 
-    refs_to_articles         text[]                      NOT NULL,
+    refs_to_articles         text[] NOT NULL,
 
-    type                     text                        NOT NULL,
+    type                     text   NOT NULL,
 
-    register_date            timestamp without time zone NOT NULL,
+    register_date            date   NOT NULL,
 
-    position                 text                        NOT NULL,
+    position                 text   NOT NULL,
     academic_degree          text,
     academic_title           text,
     refs_to_qualifying_works text[]
