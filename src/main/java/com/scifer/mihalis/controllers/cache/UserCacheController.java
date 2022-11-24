@@ -1,4 +1,4 @@
-package com.scifer.mihalis.controllers;
+package com.scifer.mihalis.controllers.cache;
 
 import com.scifer.mihalis.models.User;
 import com.scifer.mihalis.repositories.cache.UserCacheRepository;

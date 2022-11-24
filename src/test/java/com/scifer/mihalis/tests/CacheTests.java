@@ -1,7 +1,7 @@
 package com.scifer.mihalis.tests;
 
 import com.scifer.mihalis.BeansForTests;
-import com.scifer.mihalis.controllers.UserCacheController;
+import com.scifer.mihalis.controllers.cache.UserCacheController;
 import com.scifer.mihalis.models.User;
 import com.scifer.mihalis.repositories.cache.UserCacheRepository;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;

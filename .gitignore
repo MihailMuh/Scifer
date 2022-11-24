@@ -33,3 +33,4 @@ build/F
 
 testServices/
 src/main/resources/application.properties
+uploads/

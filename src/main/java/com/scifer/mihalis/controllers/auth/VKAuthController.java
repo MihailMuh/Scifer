@@ -1,4 +1,4 @@
-package com.scifer.mihalis.controllers;
+package com.scifer.mihalis.controllers.auth;
 
 import com.scifer.mihalis.models.User;
 import com.scifer.mihalis.repositories.cache.UserCacheRepository;
@@ -16,6 +16,7 @@ import reactor.core.publisher.Mono;
 @CrossOrigin
 public class VKAuthController {
     private final WebClient webClient = WebClient.create();
+
     private final UserCacheRepository cacheRepository;
 
     @GetMapping("/get-access")
