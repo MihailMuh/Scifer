@@ -4,8 +4,8 @@ import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table(name = "students")
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @ToString(callSuper = true)
 public class Student extends User {
     private String interests;

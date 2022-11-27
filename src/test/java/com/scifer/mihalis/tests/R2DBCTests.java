@@ -11,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 
-import static com.scifer.mihalis.StringAssertions.assertStaffer;
-import static com.scifer.mihalis.StringAssertions.assertStudent;
+import static com.scifer.mihalis.UserAssertions.assertStaffer;
+import static com.scifer.mihalis.UserAssertions.assertStudent;
 
 @SpringBootTest
 @DirtiesContext
@@ -53,6 +53,4 @@ class R2DBCTests {
         stafferService.save(staffer).subscribe(savedStaffer ->
                 assertStaffer(savedStaffer, id, "BLABLABLA"));
     }
-
-
 }

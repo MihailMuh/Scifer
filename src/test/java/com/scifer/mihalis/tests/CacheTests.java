@@ -29,6 +29,7 @@ public class CacheTests {
     @Test
     public void shouldSaveUser_toRedis(@Autowired User user) {
         long userId = user.getId();
+
         Mockito.when(cacheRepository.put(userId, user)).thenReturn(Mono.just(true));
 
         webClient.post()
@@ -38,5 +39,7 @@ public class CacheTests {
                 .exchange()
                 .expectStatus()
                 .isOk();
+
+        Mockito.verify(cacheRepository).put(userId, user);
     }
 }

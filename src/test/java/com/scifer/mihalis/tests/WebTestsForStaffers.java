@@ -13,13 +13,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 
-import static com.scifer.mihalis.StringAssertions.assertStaffer;
+import static com.scifer.mihalis.UserAssertions.assertStaffer;
 
 @DirtiesContext
 @WebFluxTest(StafferController.class)
@@ -38,10 +37,12 @@ public class WebTestsForStaffers {
         webClient.post()
                 .uri("/staffer")
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(staffer))
+                .bodyValue(staffer)
                 .exchange()
                 .expectStatus()
                 .isOk();
+
+        Mockito.verify(stafferService).save(staffer);
     }
 
     @Test
@@ -53,9 +54,12 @@ public class WebTestsForStaffers {
         webClient.get()
                 .uri("/staffer/{id}", id)
                 .exchange()
-                .expectStatus().isOk()
+                .expectStatus()
+                .isOk()
                 .expectBody(Staffer.class)
                 .value(stafferFromResponse -> assertStaffer(stafferFromResponse, id, staffer.getName()));
+
+        Mockito.verify(stafferService).get(id);
     }
 
     @Test
@@ -64,9 +68,9 @@ public class WebTestsForStaffers {
 
         webClient.get()
                 .uri("/staffer")
-                .accept(MediaType.APPLICATION_JSON)
                 .exchange()
-                .expectStatus().isOk()
+                .expectStatus()
+                .isOk()
                 .expectBodyList(Staffer.class)
                 .hasSize(staffers.size())
                 .value(staffersFromResponse -> {
@@ -74,5 +78,7 @@ public class WebTestsForStaffers {
                         assertStaffer(staffersFromResponse.get(i), staffers.get(i).getId(), staffers.get(i).getName());
                     }
                 });
+
+        Mockito.verify(stafferService).getAll();
     }
 }

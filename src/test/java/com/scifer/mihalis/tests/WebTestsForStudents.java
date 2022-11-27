@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 
-import static com.scifer.mihalis.StringAssertions.assertStudent;
+import static com.scifer.mihalis.UserAssertions.assertStudent;
 
 @DirtiesContext
 @WebFluxTest(StudentController.class)
@@ -42,6 +42,8 @@ public class WebTestsForStudents {
                 .exchange()
                 .expectStatus()
                 .isOk();
+
+        Mockito.verify(studentService).save(student);
     }
 
     @Test
@@ -56,6 +58,8 @@ public class WebTestsForStudents {
                 .expectStatus().isOk()
                 .expectBody(Student.class)
                 .value(studentFromResponse -> assertStudent(studentFromResponse, id, student.getName()));
+
+        Mockito.verify(studentService).get(id);
     }
 
     @Test
@@ -73,5 +77,7 @@ public class WebTestsForStudents {
                         assertStudent(studentsFromResponse.get(i), students.get(i).getId(), students.get(i).getName());
                     }
                 });
+
+        Mockito.verify(studentService).getAll();
     }
 }

@@ -15,13 +15,13 @@ public class StafferService implements UserService<Staffer> {
     private final StafferRepository repository;
 
     @Override
-    public Mono<Staffer> save(Staffer user) {
-        return repository.save(user);
+    public Mono<Staffer> save(Staffer staffer) {
+        return repository.save(staffer);
     }
 
     @Override
-    public Flux<Staffer> save(List<Staffer> users) {
-        return repository.saveAll(users);
+    public Flux<Staffer> save(List<Staffer> staffers) {
+        return repository.saveAll(staffers);
     }
 
     @Override

@@ -17,8 +17,8 @@ public class StudentController implements UserController<Student> {
 
     @Override
     @PostMapping("/student")
-    public void save(@RequestBody Student student) {
-        studentService.save(student);
+    public Mono<Void> save(@RequestBody Student student) {
+        return studentService.save(student).then();
     }
 
     @Override

@@ -6,7 +6,7 @@ import com.scifer.mihalis.models.Student;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StringAssertions {
+public final class UserAssertions {
     public static void assertStaffer(Staffer staffer, long id, String stafferName) {
         assertEquals(staffer.getId(), id);
         assertEquals(staffer.getName(), stafferName);

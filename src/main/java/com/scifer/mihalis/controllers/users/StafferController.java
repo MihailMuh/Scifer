@@ -17,8 +17,8 @@ public class StafferController implements UserController<Staffer> {
 
     @Override
     @PostMapping("/staffer")
-    public void save(@RequestBody Staffer staffer) {
-        stafferService.save(staffer);
+    public Mono<Void> save(@RequestBody Staffer staffer) {
+        return stafferService.save(staffer).then();
     }
 
     @Override

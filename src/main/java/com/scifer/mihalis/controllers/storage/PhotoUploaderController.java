@@ -45,7 +45,7 @@ public class PhotoUploaderController {
     @Async
     @DeleteMapping("/photo/{id}")
     public void deleteUserPhotos(@PathVariable long id) {
-        photoService.deleteAll(id);
+        photoService.deleteAll(id); // non-reactive operation
     }
 
     private record PackWithUserPhotoPaths(String photo, String photoRec) {

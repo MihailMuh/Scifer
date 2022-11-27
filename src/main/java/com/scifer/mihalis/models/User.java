@@ -1,5 +1,6 @@
 package com.scifer.mihalis.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.scifer.mihalis.constants.UserType;
 import lombok.Data;
 import lombok.NonNull;
@@ -44,6 +45,7 @@ public class User implements Persistable<Long> {
     }
 
     @Override
+    @JsonIgnore
     public boolean isNew() {
         if (registerDate == null) {
             registerDate = LocalDateTime.now().toLocalDate();
