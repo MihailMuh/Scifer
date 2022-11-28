@@ -1,6 +1,6 @@
 package com.scifer.mihalis.tests;
 
-import com.scifer.mihalis.BeansForTests;
+import com.scifer.mihalis.BeansForUserTests;
 import com.scifer.mihalis.controllers.users.StafferController;
 import com.scifer.mihalis.models.Staffer;
 import com.scifer.mihalis.services.models.StafferService;
@@ -22,7 +22,7 @@ import static com.scifer.mihalis.UserAssertions.assertStaffer;
 
 @DirtiesContext
 @WebFluxTest(StafferController.class)
-@Import(BeansForTests.class)
+@Import(BeansForUserTests.class)
 public class WebTestsForStaffers {
     @Autowired
     private WebTestClient webClient;

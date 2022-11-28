@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 @TestConfiguration
-public class BeansForTests {
+public class BeansForUserTests {
     public static long randLong() {
         return Math.abs(new Random().nextLong()) / 2;
     }

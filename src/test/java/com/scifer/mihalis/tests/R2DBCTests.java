@@ -1,6 +1,6 @@
 package com.scifer.mihalis.tests;
 
-import com.scifer.mihalis.BeansForTests;
+import com.scifer.mihalis.BeansForUserTests;
 import com.scifer.mihalis.models.Staffer;
 import com.scifer.mihalis.models.Student;
 import com.scifer.mihalis.services.models.StafferService;
@@ -16,7 +16,7 @@ import static com.scifer.mihalis.UserAssertions.assertStudent;
 
 @SpringBootTest
 @DirtiesContext
-@Import(BeansForTests.class)
+@Import(BeansForUserTests.class)
 class R2DBCTests {
     @Autowired
     private StudentService studentService;

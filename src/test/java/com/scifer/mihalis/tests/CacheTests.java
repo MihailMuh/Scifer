@@ -1,6 +1,6 @@
 package com.scifer.mihalis.tests;
 
-import com.scifer.mihalis.BeansForTests;
+import com.scifer.mihalis.BeansForUserTests;
 import com.scifer.mihalis.controllers.cache.UserCacheController;
 import com.scifer.mihalis.models.User;
 import com.scifer.mihalis.repositories.cache.UserCacheRepository;
@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 
 @DirtiesContext
 @WebFluxTest(UserCacheController.class)
-@Import(BeansForTests.class)
+@Import(BeansForUserTests.class)
 public class CacheTests {
     @MockBean
     private UserCacheRepository cacheRepository;
