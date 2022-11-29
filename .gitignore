@@ -34,3 +34,4 @@ build/F
 testServices/
 src/main/resources/application.properties
 uploads/
+src/main/resources/static/*
