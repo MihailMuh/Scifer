@@ -6,7 +6,7 @@ CREATE TABLE students
 
     name             text   NOT NULL,
     surname          text   NOT NULL,
-    patronymic       text   NOT NULL,
+    patronymic       text,
 
     photo            text   NOT NULL,
     photo_rec        text   NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE staffers
 
     name                     text   NOT NULL,
     surname                  text   NOT NULL,
-    patronymic               text   NOT NULL,
+    patronymic               text,
 
     photo                    text   NOT NULL,
     photo_rec                text   NOT NULL,

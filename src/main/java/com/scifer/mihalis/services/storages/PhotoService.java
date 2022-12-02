@@ -1,6 +1,5 @@
 package com.scifer.mihalis.services.storages;
 
-import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Service;
@@ -15,13 +14,11 @@ import static com.scifer.mihalis.constants.FoldersPath.BASE_PHOTO_DIR;
 
 @Service
 public class PhotoService extends StorageService {
+
+    @SneakyThrows(IOException.class)
     public PhotoService() {
         super(BASE_PHOTO_DIR);
-    }
 
-    @PostConstruct
-    @SneakyThrows(IOException.class)
-    private void init() {
         try (Stream<Path> iteratedDirs = Files.walk(getPhotoDir(), 1)) {
             iteratedDirs
                     .parallel()

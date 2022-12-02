@@ -2,7 +2,7 @@ import {isMobile} from "react-device-detect";
 
 const GreeterHeaderStyle = {
     fontWeight: "bold",
-    fontFamily: "avenir, helvetica, sans-serif",
+    fontFamily: "Oswald",
     color: "#153128",
 
     paddingBottom: "2%",

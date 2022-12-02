@@ -1,10 +1,8 @@
 import {isMobile} from "react-device-detect";
 
-const GreeterStyle = {
-    margin: "auto",
+const RegisterBGStyle = {
+    margin: "10% auto",
     display: "block",
-
-    width: "50%",
 
     background: "#CCCCFF",
     opacity: "90%",
@@ -15,12 +13,11 @@ const GreeterStyle = {
     paddingRight: "2em",
     paddingLeft: "2em",
     paddingBottom: "2em",
+    paddingTop: "2em",
 }
 
 if (isMobile) {
-    GreeterStyle.width = "75%";
-} else if (window.screen.height < 1080) {
-    // GreeterStyle.width = "55%";
+} else if (window.screen.height > 1000) {
 }
 
-export default GreeterStyle;
+export default RegisterBGStyle;

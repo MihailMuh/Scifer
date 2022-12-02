@@ -1,6 +1,6 @@
 package com.scifer.mihalis.controllers.users;
 
-import com.scifer.mihalis.hints.ReflectionHints;
+import com.scifer.mihalis.configurations.hints.ReflectionHints;
 import com.scifer.mihalis.models.Staffer;
 import com.scifer.mihalis.services.models.StafferService;
 import lombok.AllArgsConstructor;

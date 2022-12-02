@@ -13,7 +13,6 @@ import reactor.core.publisher.Mono;
 import java.nio.file.Path;
 
 @RestController
-@CrossOrigin
 @AllArgsConstructor
 public class PhotoUploaderController {
     private final PhotoService photoService;

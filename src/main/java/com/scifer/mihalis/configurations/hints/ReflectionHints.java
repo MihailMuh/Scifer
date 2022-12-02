@@ -1,4 +1,4 @@
-package com.scifer.mihalis.hints;
+package com.scifer.mihalis.configurations.hints;
 
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
