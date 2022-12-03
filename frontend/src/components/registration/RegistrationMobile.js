@@ -94,7 +94,10 @@ class RegistrationMobile extends BaseRegistration {
                 <br/><br/><br/><br/>
 
                 {this.state.userType !== 0 &&
-                    <button>Подтвердить</button>
+                    <div>
+                        <button>Подтвердить</button>
+                        <br/><br/>
+                    </div>
                 }
             </div>
         )

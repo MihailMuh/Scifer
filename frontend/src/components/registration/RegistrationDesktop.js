@@ -5,6 +5,7 @@ import deleteRefs from "../../img/delete.svg";
 import "./styles/addRefsDesktop.css";
 import TextareaStyle from "./styles/TextareaStyle";
 import BaseRegistration from "./BaseRegistration";
+import React from "react";
 
 class RegistrationDesktop extends BaseRegistration {
     render() {
@@ -114,7 +115,10 @@ class RegistrationDesktop extends BaseRegistration {
                 <br/><br/><br/><br/>
 
                 {this.state.userType !== 0 &&
-                    <button>Подтвердить</button>
+                    <div>
+                        <button>Подтвердить</button>
+                        <br/><br/>
+                    </div>
                 }
             </div>
         )

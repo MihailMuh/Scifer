@@ -4,8 +4,6 @@ const GreeterStyle = {
     margin: "auto",
     display: "block",
 
-    width: "50%",
-
     background: "#CCCCFF",
     opacity: "90%",
 
@@ -14,13 +12,11 @@ const GreeterStyle = {
 
     paddingRight: "2em",
     paddingLeft: "2em",
-    paddingBottom: "2em",
+    paddingBottom: "3em",
 }
 
 if (isMobile) {
-    GreeterStyle.width = "75%";
-} else if (window.screen.height < 1080) {
-    // GreeterStyle.width = "55%";
+    GreeterStyle.width = "70%";
 }
 
 export default GreeterStyle;

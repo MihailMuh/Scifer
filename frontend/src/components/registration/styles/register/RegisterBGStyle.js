@@ -1,6 +1,7 @@
 import {isMobile} from "react-device-detect";
 
 const RegisterBGStyle = {
+    // 10% is needed so that when adding nodes, the form grows ONLY downwards
     margin: "10% auto",
     display: "block",
 
@@ -17,7 +18,7 @@ const RegisterBGStyle = {
 }
 
 if (isMobile) {
-} else if (window.screen.height > 1000) {
+    RegisterBGStyle.width = "70%";
 }
 
 export default RegisterBGStyle;
