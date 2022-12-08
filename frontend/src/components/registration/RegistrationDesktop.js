@@ -12,6 +12,7 @@ class RegistrationDesktop extends BaseRegistration {
         return (
             <div>
                 <table width={"100%"}>
+                    <tbody>
                     <tr>
                         <td align="center">
                             <input type="text" id="name" placeholder="Имя" style={InputStyle} value={this.props.name}/>
@@ -32,7 +33,7 @@ class RegistrationDesktop extends BaseRegistration {
                         </td>
                         <td align="right" colSpan={2}>
                             <select id="type" onChange={this.handleSelectUserType}>
-                                <option value="">Выберете свой статус</option>
+                                <option style={{color: "#7c6084"}} value="">Выберете свой статус</option>
                                 <option value="student">Студент</option>
                                 <option value="postgraduate">Студент-аспирант</option>
                                 <option value="scientist">Научный сотрудник</option>
@@ -40,12 +41,14 @@ class RegistrationDesktop extends BaseRegistration {
                             </select>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
 
                 <br/>
                 <h1 style={RegisterMiniHeader}>Ссылки на публикации:</h1>
                 <br/>
                 <table>
+                    <tbody>
                     {this.refsToArticle.map((item, index) =>
                         <tr>
                             <td align="center" width={"100%"}>
@@ -57,6 +60,7 @@ class RegistrationDesktop extends BaseRegistration {
                             </td>
                         </tr>
                     )}
+                    </tbody>
                 </table>
                 <img className={"addRefsDesktop"} width={70} height={70} src={addRefs}
                      alt={"addRefs"} align={"center"} onClick={this.addRefToArticle}/>
@@ -73,6 +77,7 @@ class RegistrationDesktop extends BaseRegistration {
                     <div>
                         <br/><br/>
                         <table width={"100%"}>
+                            <tbody>
                             <tr>
                                 <td align="center" colSpan={3}>
                                     <input type="text" id="academicDegree" placeholder="Ученое звание"
@@ -89,12 +94,14 @@ class RegistrationDesktop extends BaseRegistration {
                                     <input type="text" id="position" placeholder="Должность" style={InputStyle}/>
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
 
                         <br/>
                         <h1 style={RegisterMiniHeader}>Ссылки на квалификационные работы:</h1>
                         <br/>
                         <table>
+                            <tbody>
                             {this.refsToQualifyingWorks.map((item, index) =>
                                 <tr>
                                     <td align="center" width={"100%"}>
@@ -107,19 +114,13 @@ class RegistrationDesktop extends BaseRegistration {
                                     </td>
                                 </tr>
                             )}
+                            </tbody>
                         </table>
                         <img className={"addRefsDesktop"} width={70} height={70} src={addRefs}
                              alt={"addRefs"} align={"center"} onClick={this.addRefToQualifyingWork}/>
                     </div>
                 }
                 <br/><br/><br/><br/>
-
-                {this.state.userType !== 0 &&
-                    <div>
-                        <button>Подтвердить</button>
-                        <br/><br/>
-                    </div>
-                }
             </div>
         )
     }

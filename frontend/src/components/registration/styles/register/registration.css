@@ -20,6 +20,7 @@ td {
 
     border-color: #240d3b;
     border-width: 2px;
+    background: white;
 
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 1);
@@ -31,14 +32,13 @@ button {
 
     text-align: center;
 
-    width: 140px;
-    height: 200%;
-    padding-bottom: 6px;
-    padding-top: 6px;
+    width: 170px;
+    padding-bottom: 10px;
+    padding-top: 8px;
 
     font-weight: bold;
     font-family: Oswald;
-    font-size: 130%;
+    font-size: 145%;
 
     border-color: #7c6084;
     border-width: 2px;
@@ -48,6 +48,16 @@ button {
 
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+    background-color: #9176cb;
+}
+
+button:active {
+    background-color: #ad74b1;
+    padding-bottom: 10px;
 }
 
 .deleteRefs {

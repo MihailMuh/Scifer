@@ -12,6 +12,7 @@ const InputStyle = {
 
     borderColor: "#240d3b",
     placeholderColor: "#7c6084",
+    background: "white",
 
     borderRadius: "40px",
     boxShadow: "0 0 10px rgba(0, 0, 0, 1)",

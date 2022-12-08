@@ -35,6 +35,7 @@ class RegistrationMobile extends BaseRegistration {
                 <h1 style={RegisterMiniHeader}>Ссылки на публикации:</h1>
                 <br/>
                 <table>
+                    <tbody>
                     {this.refsToArticle.map((item, index) =>
                         <tr>
                             <td align="center" width={"100%"}>
@@ -46,6 +47,7 @@ class RegistrationMobile extends BaseRegistration {
                             </td>
                         </tr>
                     )}
+                    </tbody>
                 </table>
                 <img className={"addRefsMobile"} width={70} height={70} src={addRefs}
                      alt={"addRefs"} align={"center"} onClick={this.addRefToArticle}/>
@@ -74,6 +76,7 @@ class RegistrationMobile extends BaseRegistration {
                         <h1 style={RegisterMiniHeader}>Ссылки на квалификационные работы:</h1>
                         <br/>
                         <table>
+                            <tbody>
                             {this.refsToQualifyingWorks.map((item, index) =>
                                 <tr>
                                     <td align="center" width={"100%"}>
@@ -86,19 +89,13 @@ class RegistrationMobile extends BaseRegistration {
                                     </td>
                                 </tr>
                             )}
+                            </tbody>
                         </table>
                         <img className={"addRefsMobile"} width={70} height={70} src={addRefs}
                              alt={"addRefs"} align={"center"} onClick={this.addRefToQualifyingWork}/>
                     </div>
                 }
                 <br/><br/><br/><br/>
-
-                {this.state.userType !== 0 &&
-                    <div>
-                        <button>Подтвердить</button>
-                        <br/><br/>
-                    </div>
-                }
             </div>
         )
     }

@@ -4,13 +4,12 @@ const RegisterHeaderStyle = {
     textAlign: "center",
     margin: "auto",
 
-    fontWeight: "bold",
     fontFamily: "Oswald",
     color: "#240d3b",
 
-    paddingBottom: "3%",
+    paddingBottom: "4%",
 
-    fontSize: "400%",
+    fontSize: "370%",
 }
 
 if (isMobile) {

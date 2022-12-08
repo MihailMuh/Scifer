@@ -1,10 +1,11 @@
-import RegisterBGStyle from "./styles/register/RegisterBGStyle"
+import RegisterBGStyle from "./styles/register/RegisterBGStyle";
 import React from "react";
 import RegisterHeaderStyle from "./styles/register/RegisterHeaderStyle";
 import "./styles/register/registration.css";
 import {isDesktop, isMobile} from "react-device-detect";
 import RegistrationDesktop from "./RegistrationDesktop";
 import RegistrationMobile from "./RegistrationMobile";
+import ApplyButton from "./components/ApplyButton";
 
 const user = JSON.parse(sessionStorage.getItem("user"))
 
@@ -41,6 +42,8 @@ class Registration extends React.Component {
 
                 {isMobile && <RegistrationMobile name={user.name} surname={user.surname}/>}
                 {isDesktop && <RegistrationDesktop name={user.name} surname={user.surname}/>}
+
+                <ApplyButton/>
             </div>
         )
     }
