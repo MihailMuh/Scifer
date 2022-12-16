@@ -67,4 +67,21 @@ public class WebTestsForPhotoUploader {
         Mockito.verify(photoService).savePhoto(any(FilePart.class), eq(id));
         Mockito.verify(photoService).savePhotoRec(any(FilePart.class), eq(id));
     }
+
+    @Test
+    public void shouldDeleteAllUserPhotos_byWebClient() {
+        long id = randLong();
+
+        Mockito.doNothing().when(photoService).deleteAll(id);
+
+        webClient.delete()
+                .uri("/photo/{id}", id)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBody()
+                .isEmpty();
+
+        Mockito.verify(photoService).deleteAll(id);
+    }
 }

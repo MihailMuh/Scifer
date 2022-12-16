@@ -1,0 +1,47 @@
+.divTip {
+    position: relative;
+    display: inline-block;
+}
+
+.divTip .tip {
+    visibility: hidden;
+
+    text-align: center;
+    font-family: Oswald;
+
+    outline: none;
+    background-color: white;
+
+    border-radius: 40px;
+
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    width: 180px;
+    bottom: 135%;
+    left: 50%;
+    margin: auto auto auto -85px;
+
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.divTip {
+    width: 100%;
+}
+
+.divTip .tip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+.divTip:hover .tip {
+    visibility: visible;
+    opacity: 90%;
+}

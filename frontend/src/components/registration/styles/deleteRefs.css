@@ -1,10 +1,7 @@
-.addRefsMobile {
-    display: block;
-    margin: auto;
+.deleteRefs {
     filter: invert(13%) sepia(12%) saturate(3967%) hue-rotate(232deg) brightness(91%) contrast(111%);
-    border-radius: 300px;
 }
 
-.addRefsMobile:hover {
+.deleteRefs:hover {
     filter: invert(33%) sepia(24%) saturate(2289%) hue-rotate(258deg) brightness(94%) contrast(87%);
 }

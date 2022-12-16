@@ -9,7 +9,20 @@ class BaseRegistration extends React.Component {
         this.state = {
             clicked: false,
             userType: 0 // 0: non-selected, 1: student, 2: scientist
-        }
+        };
+        this.allNodeRefs = {
+            "nameInput": React.createRef(),
+            "surnameInput": React.createRef(),
+            "patronymicInput": React.createRef(),
+            "specializationInput": React.createRef(),
+            "selectUserType": React.createRef(),
+            "refsToArticle": {},
+            "interestsTextarea": React.createRef(),
+            "academicDegreeInput": React.createRef(),
+            "academicTitleInput": React.createRef(),
+            "positionInput": React.createRef(),
+            "refsToQualifyingWorks": {},
+        };
     }
 
     updateState = () => {
@@ -21,34 +34,45 @@ class BaseRegistration extends React.Component {
 
     deleteRefToArticle = () => {
         this.refsToArticle.pop();
+        delete this.allNodeRefs.refsToArticle[`refToArticle_${this.refsToArticle.length}`];
+
         this.updateState();
     }
 
     addRefToArticle = () => {
-        this.refsToArticle.push(0);
+        const len = this.refsToArticle.length
+        this.allNodeRefs.refsToArticle[`refToArticle_${len}`] = React.createRef();
+        this.refsToArticle.push(len);
+
         this.updateState();
     }
 
     deleteRefToQualifyingWork = () => {
         this.refsToQualifyingWorks.pop();
+        delete this.allNodeRefs.refsToQualifyingWorks[`refToArticle_${this.refsToQualifyingWorks.length}`];
+
         this.updateState();
     }
 
     addRefToQualifyingWork = () => {
-        this.refsToQualifyingWorks.push(0);
+        const len = this.refsToQualifyingWorks.length
+        this.allNodeRefs.refsToQualifyingWorks[`refToQualifyingWork_${len}`] = React.createRef();
+        this.refsToQualifyingWorks.push(len);
+
         this.updateState();
     }
 
     interpretUserSelect = () => {
-        switch (document.getElementById("type").options.selectedIndex) {
+        switch (this.allNodeRefs["selectUserType"].current.options.selectedIndex) {
             case 1:
             case 2:
                 return 1;
             case 3:
             case 4:
                 return 2;
+            default:
+                return 0;
         }
-        return 0;
     }
 
     handleSelectUserType = () => {

@@ -6,7 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ZeroCopyHttpOutputMessage;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -41,7 +40,6 @@ public class PhotoUploaderController {
         return Mono.zip(photoService.savePhoto(photo, id), photoService.savePhotoRec(photoRec, id), (PackWithUserPhotoPaths::new));
     }
 
-    @Async
     @DeleteMapping("/photo/{id}")
     public void deleteUserPhotos(@PathVariable long id) {
         photoService.deleteAll(id); // non-reactive operation

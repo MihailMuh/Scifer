@@ -2,6 +2,7 @@
     display: block;
     margin: 5px auto;
     filter: invert(13%) sepia(12%) saturate(3967%) hue-rotate(232deg) brightness(91%) contrast(111%);
+    border-radius: 300px;
 }
 
 .addRefsDesktop:hover {

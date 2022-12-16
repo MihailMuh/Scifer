@@ -1,0 +1,32 @@
+button {
+    display: table;
+    margin: auto;
+
+    text-align: center;
+
+    width: 170px;
+    padding-bottom: 10px;
+    padding-top: 8px;
+
+    font-weight: bold;
+    font-family: Oswald;
+    font-size: 145%;
+
+    border-color: #7c6084;
+    border-width: 2px;
+
+    background-color: #9882c2;
+    color: white;
+
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+    background-color: #9176cb;
+}
+
+button:active {
+    background-color: #ad74b1;
+}
