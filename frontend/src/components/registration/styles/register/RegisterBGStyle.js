@@ -15,6 +15,8 @@ const RegisterBGStyle = {
     paddingLeft: "2em",
     paddingBottom: "2em",
     paddingTop: "2em",
+
+    transition: ".5s",
 }
 
 if (isMobile) {

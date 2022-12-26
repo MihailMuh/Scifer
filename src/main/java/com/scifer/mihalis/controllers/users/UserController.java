@@ -11,4 +11,6 @@ public interface UserController<T> {
     Mono<T> get(@PathVariable long id);
 
     Flux<T> getAll();
+
+    Mono<Void> delete(@PathVariable long id);
 }

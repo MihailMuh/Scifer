@@ -35,7 +35,7 @@ public class StafferService implements UserService<Staffer> {
     }
 
     @Override
-    public Mono<Void> deleteAll() {
-        return repository.deleteAll();
+    public Mono<Void> delete(long id) {
+        return repository.deleteById(id);
     }
 }

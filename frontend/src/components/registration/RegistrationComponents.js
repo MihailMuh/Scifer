@@ -61,13 +61,14 @@ class RegistrationComponents extends RegistrationLayout {
             "specializationInput": <input type="text" ref={this.allNodeRefs["specializationInput"]}
                                           placeholder="Специальность"/>,
 
-            "selectUserType": <select ref={this.allNodeRefs["selectUserType"]} onChange={this.handleSelectUserType}>
-                <option style={{color: "#7c6084"}} value="">Выберете свой статус</option>
-                <option value="student">Студент</option>
-                <option value="postgraduate">Студент-аспирант</option>
-                <option value="scientist">Научный сотрудник</option>
-                <option value="mentor">Научный руководитель</option>
-            </select>,
+            "selectUserType":
+                <select ref={this.allNodeRefs["selectUserType"]} onChange={this.handleSelectUserType}>
+                    <option style={{color: "#7c6084"}} value="">Выберете свой статус</option>
+                    <option value="student">Студент</option>
+                    <option value="postgraduate">Студент-аспирант</option>
+                    <option value="scientist">Научный сотрудник</option>
+                    <option value="mentor">Научный руководитель</option>
+                </select>,
 
             "addRefsImageForArticles": <img className={this.addRefsImgClassName} width={70} height={70} src={addRefs}
                                             alt={"addRefs"} align={"center"} onClick={this.addRefToArticle}/>,

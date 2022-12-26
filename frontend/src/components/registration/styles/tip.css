@@ -23,7 +23,7 @@
     margin: auto auto auto -85px;
 
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity .5s;
 }
 
 .divTip {

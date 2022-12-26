@@ -7,3 +7,46 @@ td {
     padding: 10px;
 }
 
+input, select {
+    text-align: center;
+
+    padding-bottom: 6px;
+    padding-top: 6px;
+}
+
+input, select, textarea {
+    font-weight: bold;
+    font-family: Oswald;
+    font-size: 130%;
+
+    border: 3px solid #7c6084;
+    outline: none;
+    background: white;
+
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+
+    transition: .5s;
+}
+
+input:hover, select:hover, textarea:hover {
+    border-color: #9176cb;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 1);
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #240d3b;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+}
+
+.addRefsMobile, .addRefsDesktop {
+    display: block;
+    filter: invert(13%) sepia(12%) saturate(3967%) hue-rotate(232deg) brightness(91%) contrast(111%);
+    border-radius: 300px;
+
+    transition: .5s;
+}
+
+.addRefsMobile:hover, .addRefsDesktop:hover {
+    filter: invert(33%) sepia(24%) saturate(2289%) hue-rotate(258deg) brightness(94%) contrast(87%);
+}

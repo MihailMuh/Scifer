@@ -15,12 +15,18 @@ class ApplyButton extends React.Component {
         );
     }
 
+    isDataValid = () => {
+        const nodes = this.props.allNodeRefs;
+
+        return (
+            !(/\d/.test(nodes["nameInput"].current.value)) &&
+            !(/\d/.test(nodes["surnameInput"].current.value)) &&
+            !(/\d/.test(nodes["patronymicInput"].current.value)) &&
+            !(/\d/.test(nodes["specializationInput"].current.value))
+        )
+    }
+
     handleRegistration = () => {
-        if (!this.hasEmptyNodes()) {
-            alert("Err")
-            return
-        }
-        console.log(this.props.allNodeRefs)
     }
 
     render() {

@@ -35,7 +35,7 @@ public class StudentService implements UserService<Student> {
     }
 
     @Override
-    public Mono<Void> deleteAll() {
-        return repository.deleteAll();
+    public Mono<Void> delete(long id) {
+        return repository.deleteById(id);
     }
 }

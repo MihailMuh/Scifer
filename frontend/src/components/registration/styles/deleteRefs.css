@@ -1,7 +1,11 @@
 .deleteRefs {
     filter: invert(13%) sepia(12%) saturate(3967%) hue-rotate(232deg) brightness(91%) contrast(111%);
+
+    transition: .5s;
 }
 
 .deleteRefs:hover {
     filter: invert(33%) sepia(24%) saturate(2289%) hue-rotate(258deg) brightness(94%) contrast(87%);
+
+    transition: .5s;
 }

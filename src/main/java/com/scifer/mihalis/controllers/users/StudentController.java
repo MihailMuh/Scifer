@@ -13,23 +13,29 @@ import reactor.core.publisher.Mono;
 @RestController
 @ImportRuntimeHints(ReflectionHints.class)
 public class StudentController implements UserController<Student> {
-    private final StudentService studentService;
+    private final StudentService service;
 
     @Override
     @PostMapping("/student")
     public Mono<Void> save(@RequestBody Student student) {
-        return studentService.save(student).then();
+        return service.save(student).then();
     }
 
     @Override
     @GetMapping("/student/{id}")
     public Mono<Student> get(@PathVariable long id) {
-        return studentService.get(id);
+        return service.get(id);
     }
 
     @Override
     @GetMapping("/student")
     public Flux<Student> getAll() {
-        return studentService.getAll();
+        return service.getAll();
+    }
+
+    @Override
+    @DeleteMapping("/student/{id}")
+    public Mono<Void> delete(@PathVariable long id) {
+        return service.delete(id);
     }
 }

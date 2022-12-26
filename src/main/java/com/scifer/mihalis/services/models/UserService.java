@@ -15,5 +15,5 @@ public interface UserService<T> {
 
     Flux<T> getAll();
 
-    Mono<Void> deleteAll();
+    Mono<Void> delete(long id);
 }

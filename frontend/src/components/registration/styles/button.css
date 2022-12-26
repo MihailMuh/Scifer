@@ -21,12 +21,11 @@ button {
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 1);
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    transition: .5s;
 }
 
 button:hover {
-    background-color: #9176cb;
-}
-
-button:active {
     background-color: #ad74b1;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 1);
 }
